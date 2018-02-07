@@ -150,5 +150,11 @@
             </plugin>
         </plugins>
     </build>
+    <developers>
+        <developer>
+            <name>Fernando</name>
+            <email>fn.silva23@gmail.com</email>
+        </developer>
+    </developers>
 
 </project>
