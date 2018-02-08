@@ -17,6 +17,7 @@ import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.form.SessaoForm;
+import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
 
 @Controller
 public class SessaoController {
@@ -57,11 +58,14 @@ public class SessaoController {
 	@PostMapping(value="/admin/sessao")
 	@Transactional
 	public ModelAndView salva(@Valid SessaoForm form, BindingResult result){
+	
 		if(result.hasErrors()) return form(form.getSalaId(),form);
 		
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/sala/"+ form.getSalaId() + "/sessoes");
 		
 		Sessao sessao = form.toSessao(salaDao, filmeDao);
+		
+		//GerenciadorDeSessao gerenciadorDeSessao = new GerenciadorDeSessao();
 		
 		sessaoDao.save(sessao);
 		
